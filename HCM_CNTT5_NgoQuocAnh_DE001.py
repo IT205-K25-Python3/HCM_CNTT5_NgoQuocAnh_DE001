@@ -1,4 +1,3 @@
-
 employees = []
 
 
@@ -49,11 +48,11 @@ def input_float(prompt, min_val=None):
                     valid = False
                     break
         if not valid:
-            print("Giá trị không hợp lệ. Vui lòng nhập số dương.")
+            print("Giá trị không hợp lệ")
             continue
         value = float(raw)
         if min_val is not None and value <= min_val:
-            print(f"Giá trị phải lớn hơn {min_val}.")
+            print(f"Giá trị phải lớn hơn {min_val}")
             continue
         return value
 
@@ -62,11 +61,11 @@ def input_int(prompt, min_val=1, max_val=30):
     while True:
         raw = input(prompt).strip()
         if not raw.isdigit():
-            print(f"Vui lòng nhập số nguyên từ {min_val} đến {max_val}.")
+            print(f"Vui lòng nhập số nguyên từ {min_val} đến {max_val}")
             continue
         value = int(raw)
         if value < min_val or value > max_val:
-            print(f"Giá trị phải từ {min_val} đến {max_val}.")
+            print(f"Giá trị phải từ {min_val} đến {max_val}")
             continue
         return value
 
@@ -75,7 +74,7 @@ def input_nonempty(prompt):
     while True:
         raw = input(prompt).strip()
         if not raw:
-            print("Không được để trống.")
+            print("Không được để trống")
             continue
         return raw
 
@@ -123,7 +122,7 @@ def add_new_employee():
     while True:
         emp_id = input_nonempty("Mã nhân viên (VD: NV001): ").upper()
         if is_duplicate_id(emp_id):
-            print(f"Mã '{emp_id}' đã tồn tại. Vui lòng nhập mã khác.")
+            print(f"Mã '{emp_id}' đã tồn tại")
         else:
             break
 
@@ -185,7 +184,7 @@ def update_information_and_working_days():
     emp["income_classification"] = classify_income(emp["total_income"])
 
     print(f"\nCập nhật thành công!")
-    print(f"Tổng thu nhập mới: {emp['total_income']}  ->  Phân loại: {emp['income_classification']}")
+    print(f"Tổng thu nhập mới: {emp['total_income']}  \n  Phân loại: {emp['income_classification']}")
     print("=" * 55)
 
 
@@ -208,7 +207,7 @@ def remove_employee():
         confirm = input("có chắc chắn muốn xóa? (Y/N): ").strip().upper()
         if confirm == 'Y':
             employees.remove(emp)
-            print(f"Đã xóa nhân viên '{emp['full_name']}' thành công.")
+            print(f"Đã xóa nhân viên '{emp['full_name']}'")
             break
         elif confirm == 'N':
             print("Hủy xóa.")
@@ -234,7 +233,7 @@ def search_employee():
         print("Vui lòng chọn 1 hoặc 2.")
 
     if mode == '1':
-        emp_id = input_nonempty("  Nhập mã nhân viên: ").upper()
+        emp_id = input_nonempty("Nhập mã nhân viên: ").upper()
         emp = find_employee_by_id(emp_id)
         results = [emp] if emp else []
     else:
@@ -242,7 +241,7 @@ def search_employee():
         results = [e for e in employees if keyword in e["full_name"].lower()]
 
     if not results:
-        print("Không tìm thấy nhân viên phù hợp.")
+        print("Không tìm thấy nhân viên")
     else:
         print(f"\n Tìm thấy {len(results)} kết quả:")
         for emp in results:
@@ -259,7 +258,7 @@ def payroll_and_personnel_statistics():
     print("=" * 55)
 
     if not employees:
-        print("(Chưa có dữ liệu nhân viên)")
+        print("Chưa có dữ liệu nhân viên")
         print("=" * 55)
         return
 
@@ -270,10 +269,10 @@ def payroll_and_personnel_statistics():
         total_payroll += emp["total_income"]
         groups[emp["income_classification"]].append(emp)
 
-    print(f"  Tổng số nhân viên : {len(employees)} người")
+    print(f" Tổng số nhân viên : {len(employees)} người")
     print(f" Tổng quỹ lương: {total_payroll}")
     avg = total_payroll / len(employees)
-    print(f" Lương TB/người: {avg}")
+    print(f" Lương tb/người: {avg}")
 
     print()
     print("Phân loại thu nhập:")
@@ -331,9 +330,9 @@ def automatic_income_classification():
             print(f"{emp['employee_id']} - {emp['full_name']}: {new_total}  ->  {new_class}")
 
     if updated_count == 0:
-        print("Tất cả phân loại đã đúng, không có thay đổi.")
+        print("đã pphân loại")
     else:
-        print(f"\nĐã cập nhật lại phân loại cho {updated_count} nhân viên.")
+        print(f"\nĐã cập nhật lại phân loại {updated_count} nhân viên")
 
     print("=" * 55)
 
@@ -356,7 +355,7 @@ def main():
         print("8. Thoát chương trình")
         print("-" * 40)
 
-        choice = input("  Chọn chức năng: ").strip()
+        choice = input("Chọn chức năng: ").strip()
 
         match choice:
             case "1":
@@ -374,10 +373,10 @@ def main():
             case "7":
                 automatic_income_classification()
             case "8":
-                print("\nCảm ơn. Tạm biệt!")
+                print("\nCảm ơn tạm biệt!")
                 break
             case _:
-                print("Lựa chọn không hợp lệ.(1-8)")
+                print("lựa chọn không hợp lệ(1-8)")
 
 
 if __name__ == "__main__":
