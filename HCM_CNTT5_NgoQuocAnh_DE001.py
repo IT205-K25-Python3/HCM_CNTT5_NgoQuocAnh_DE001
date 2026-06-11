@@ -57,7 +57,7 @@ def input_float(prompt, min_val=None):
         return value
 
 
-def input_int(prompt, min_val=1, max_val=30):
+def input_int(prompt, min_val=1, max_val=31):
     while True:
         raw = input(prompt).strip()
         if not raw.isdigit():
@@ -173,7 +173,7 @@ def update_information_and_working_days():
     print()
 
     emp["basic_daily_wage"] = input_float("Lương ngày mới (VND): ", min_val=0)
-    emp["number_of_working_days"] = input_int("Số ngày công mới (1-30): ", 1, 30)
+    emp["number_of_working_days"] = input_int("Số ngày công mới (1-31): ", 1, 31)
     emp["allowances"] = input_float("Phụ cấp mới (VND): ", min_val=0)
 
     emp["total_income"] = calculate_total_income(
