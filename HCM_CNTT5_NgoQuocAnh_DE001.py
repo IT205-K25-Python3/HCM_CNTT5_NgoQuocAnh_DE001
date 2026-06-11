@@ -101,7 +101,7 @@ def display_employee_list():
     print("=" * 55)
 
     if not employees:
-        print("Chưa có nhân viên nào")
+        print("nhân viên trống")
         print("=" * 55)
         return
 
@@ -109,7 +109,7 @@ def display_employee_list():
         print_employee_block(emp)
 
     print_line()
-    print(f"Tổng cộng: {len(employees)} nhân viên")
+    print(f"Tổng: {len(employees)} nhân viên")
     print("=" * 55)
 
 
@@ -120,16 +120,16 @@ def add_new_employee():
     print("=" * 55)
 
     while True:
-        emp_id = input_nonempty("Mã nhân viên (VD: NV001): ").upper()
+        emp_id = input_nonempty("Mã nv(VD: NV001): ").upper()
         if is_duplicate_id(emp_id):
             print(f"Mã '{emp_id}' đã tồn tại")
         else:
             break
 
-    full_name = input_nonempty("Họ và tên: ")
-    basic_daily_wage = input_float("Lương ngày cơ bản (VND): ", min_val=0)
-    number_of_working_days = input_int("Số ngày công (1-31): ", 1, 31)
-    allowances = input_float("Tiền phụ cấp (VND): ", min_val=0)
+    full_name = input_nonempty("họ và tên: ")
+    basic_daily_wage = input_float("lương ngày cơ bản (VND): ", min_val=0)
+    number_of_working_days = input_int("số ngày công (1-31): ", 1, 31)
+    allowances = input_float("tiền phụ cấp (VND): ", min_val=0)
 
     total_income= calculate_total_income(basic_daily_wage, number_of_working_days, allowances)
     income_classification = classify_income(total_income)
@@ -198,7 +198,7 @@ def remove_employee():
     emp= find_employee_by_id(emp_id)
 
     if emp is None:
-        print(f"Không tìm thấy nhân viên mã '{emp_id}'.")
+        print(f"Không tìm thấy nhân viên '{emp_id}'.")
         return
 
     print(f"\nNhân viên: {emp['full_name']} ({emp['employee_id']})")
@@ -223,8 +223,8 @@ def search_employee():
     print("\n" + "=" * 55)
     print("TÌM KIẾM NHÂN VIÊN")
     print("=" * 55)
-    print("1. Tìm chính xác theo mã nhân viên")
-    print("2. Tìm gần đúng theo tên nhân viên")
+    print("1. Tìm chính xác theo id")
+    print("2. Tìm gần đúng theo full name")
 
     while True:
         mode = input("  Chọn (1/2): ").strip()
@@ -258,7 +258,7 @@ def payroll_and_personnel_statistics():
     print("=" * 55)
 
     if not employees:
-        print("Chưa có dữ liệu nhân viên")
+        print("trống nhân viên")
         print("=" * 55)
         return
 
@@ -269,10 +269,10 @@ def payroll_and_personnel_statistics():
         total_payroll += emp["total_income"]
         groups[emp["income_classification"]].append(emp)
 
-    print(f" Tổng số nhân viên : {len(employees)} người")
+    print(f"tổng số nhân viên : {len(employees)} người")
     print(f" Tổng quỹ lương: {total_payroll}")
     avg = total_payroll / len(employees)
-    print(f" Lương tb/người: {avg}")
+    print(f"lương tb/người: {avg}")
 
     print()
     print("Phân loại thu nhập:")
@@ -307,7 +307,7 @@ def automatic_income_classification():
     print("=" * 55)
 
     if not employees:
-        print("(Chưa có dữ liệu nhân viên)")
+        print("(trống nhân viên)")
         print("=" * 55)
         return
 
