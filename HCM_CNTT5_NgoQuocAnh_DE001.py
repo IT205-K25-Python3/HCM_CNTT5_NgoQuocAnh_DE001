@@ -313,11 +313,7 @@ def automatic_income_classification():
 
     updated_count = 0
     for emp in employees:
-        new_total = calculate_total_income(
-            emp["basic_daily_wage"],
-            emp["number_of_working_days"],
-            emp["allowances"]
-        )
+        new_total = calculate_total_income(emp["basic_daily_wage"],emp["number_of_working_days"],emp["allowances"])
         new_class = classify_income(new_total)
 
         changed = (new_total != emp["total_income"]) or (new_class != emp["income_classification"])
